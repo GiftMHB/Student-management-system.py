@@ -28,8 +28,8 @@ def start():
                 add_student()
             case 2:
                 view_students()
-            # case 3:
-            #     search_student()
+            case 3:
+                search_student()
             # case 4:
             #     update_student_info()
             # case 5:
@@ -76,6 +76,36 @@ def view_students():
         
     f.close()
     
+def search_student():
+    
+    print('Students can only be searched by: "student_ID or student_name"')
+    f = open("students.txt","r") 
+    
+    content = f.read()
+    
+    if not content:
+        print('The system has no student information stored ')
+        f.close()
+        return
+        
+    f.seek(0)
+    
+    wanted = input('Enter student_ID or student_name: ')
+    found = False
+    
+    for line in f:
+        clean_line = line.strip()
+        cleaner = clean_line.split(",")
+        
+        if cleaner[0] == wanted or cleaner[1] == wanted:
+            print('Student ' + cleaner[1] + ' of ID ' + cleaner[0] + ' is ' + cleaner[2] + ' old, studying ' + cleaner[3])
+            found = True
+            break
+            
+    if not found:
+        print(wanted + ' is not in our database')
+    
+    f.close()
     
 start()
     
