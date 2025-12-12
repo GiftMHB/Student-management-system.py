@@ -26,8 +26,8 @@ def start():
         match instructor_choice:
             case 1:
                 add_student()
-            # case 2:
-            #     view_students()
+            case 2:
+                view_students()
             # case 3:
             #     search_student()
             # case 4:
@@ -35,7 +35,8 @@ def start():
             # case 5:
             #     delete_student()
             case 6:
-                print("Exiting program...")
+                exit_program()
+                print("Exiting system...")
                 break  
             case _:
                 print('Invalid input:', instructor_choice)
@@ -60,7 +61,21 @@ def add_student():
     print(student_name, ' of ID: ', student_ID, ' was added successfully!')
     
 def exit_program():
-    print("Goodbye, chat soon!!!")
+    print("Goodbye, visit soon!!!")
+    
+def view_students():
+    
+    print("Viewing all students...")
+    f = open("students.txt", "r")
+    content = f.read()
+    
+    if not content:
+        print('No students found')
+    else:
+        print(content)
+        
+    f.close()
+    
     
 start()
     
